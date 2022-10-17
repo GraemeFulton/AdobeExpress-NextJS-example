@@ -1,4 +1,6 @@
+# Adobe Express + NextJS Example
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
 
 ## Getting Started
 
@@ -21,25 +23,33 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What's going on?
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 1. Embed CCEverywhere SDK, and Initialize:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+This all happens in [_app.js](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/_app.js):
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+* [Line 16](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/_app.js#L16), the CCEverywhere SDK is loaded into the `<Head>`
+* [L17](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/_app.js#L17), the initialization script is added, also on `<head>`. It looks like this:
+```
+let ccEverywhereInitScript = `window.ccEverywhere = window.CCEverywhere.initialize({
+  clientId:"${process.env.NEXT_PUBLIC_ADOBE_CC_API_KEY}",
+  appName: 'Letter',
+  appVersion: { major: 1, minor: 0 },
+  platformCategory: 'web',
+  redirectUri:"${process.env.NEXT_PUBLIC_ADOBE_REDIRECT_URI}" 
+}); `
+```
+That reads the ENV variables from `.env`, which should be at the root of the project.
 
-## Learn More
+## 2. Redirect URI and Exchange Token
+The redirect URI for this project is: `https://localhost:3000/auth/adobeAuth`, you can see it in the [.env.example]((https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/.env.example#L3))
 
-To learn more about Next.js, take a look at the following resources:
+So if you go to [/pages/auth/adobeAuth.js](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js), you can see how the authentication is taking place. Pretty much just (window.ccEverywhere.exchangeAuthCodeForToken();)[`https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js#L6]
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 3. Button that triggers the Express Editor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Index.js](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/index.js) has an `openExpress` function, that is triggered when a link is clicked.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+That is how the [Letter Editor](https://app.letter.so/try) has been set up, with the same routes and code.
