@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 1. npm install 
-2. add your Adobe Express keys in a .env file. See .env.example for an example
+2. add your Adobe Express keys in a .env file. See [.env.example](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/.env.example) for an example.
 
 Run the development server:
 
