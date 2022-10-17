@@ -45,7 +45,7 @@ That reads the ENV variables from `.env`, which should be at the root of the pro
 ## 2. Redirect URI and Exchange Token
 The redirect URI for this project is: `https://localhost:3000/auth/adobeAuth`, you can see it in the [.env.example]((https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/.env.example#L3))
 
-So if you go to [/pages/auth/adobeAuth.js](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js), you can see how the authentication is taking place. Pretty much just [window.ccEverywhere.exchangeAuthCodeForToken();](`https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js#L6)
+So if you go to [/pages/auth/adobeAuth.js](https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js), you can see how the authentication is taking place. Pretty much just [`window.ccEverywhere.exchangeAuthCodeForToken();`](`https://github.com/GraemeFulton/AdobeExpress-NextJS-example/blob/main/pages/auth/adobeAuth.js#L6)
 
 ## 3. Button that triggers the Express Editor
 
