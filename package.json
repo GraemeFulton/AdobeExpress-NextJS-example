@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev-https": "node server.js && NODE_OPTIONS='--inspect' next --hostname 127.0.0.1"
   },
   "dependencies": {
     "next": "12.3.1",

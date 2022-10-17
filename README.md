@@ -2,8 +2,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+1. npm install 
 
+Run the development server:
+
+## For https on localhost:
+Make sure the key.pem thing is generated and in the project (someting like localhost.pem and localhost-key.pem)
+ 
+```
+npm run dev-https
+```
+
+or no https:
 ```bash
 npm run dev
 # or
